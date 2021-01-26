@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #circle_on{
+          background-color: green;
+          width:25px;
+          height:25px;
+          border-radius: 50px;
+        }
+        #circle_off{
+          background-color: red;
+          width:25px;
+          height:25px;
+          border-radius: 50px;
+        }
+        #divClock{
+          font-size:30px;
+          color: white;
+          background-color: black;
+        }
+    </style>
+<!--    <script language="JavaScript">-->
+<!--        function showTime(){-->
+<!--            var date = new Date();-->
+<!--            var divClock = document.getElementById('divClock');-->
+<!--            var t = currentDate.getHours() + currentDate.getMinutes() + currentDate.getSeconds();-->
+<!--            divClock.innerText = t;-->
+<!--            setTimeout(showTime, 1000);-->
+<!--        }-->
+<!--    </script>-->
+
+
+ <script language="javascript">
+ function showAlert() {
+ alert("메시지 박스입니다.\n본 메시지는 두 줄 이상입니다\n\n감사합니다.");
+ }
+
+
+
+ </script>
+
+
+</head>
+
+
+
+<body>
+
+<h1>제목</h1>
+
+<!--<tr><div id="divClock" class="clock"/></tr>-->
+
+<table border="1" >
+<!--    <tr>-->
+<!--        <th>1</th>-->
+<!--        <th>2</th>-->
+<!--        <th>3</th>-->
+<!--        <th>4</th>-->
+<!--    </tr>-->
+
+    {% for dic in data %}
+   <tr>
+<!--       {% for d in dic %}-->
+<!--       <td>{{d}}</td>-->
+<!--       {% endfor %}-->
+
+       {% if dic.state == 'Running' %}
+        <td><div id="circle_on"/></td>
+       {% else %}
+        <td><div id="circle_off"/></td>
+       {% endif %}
+        <td>{{dic.name}}</td>
+        <td>{{dic.IP}}</td>
+        <td>{{dic.port}}</td>
+        <td>{{dic.zone}}</td>
+        <td>{{dic.key}}</td>
+        <form action="" method="post">
+            <input type="hidden" value="{{dic.IP}}" name="ip"/>
+            <input type="hidden" value="{{dic.port}}" name="port"/>
+            <td><input type="submit" value="접속"></input></td>
+        </form>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

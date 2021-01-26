@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,8 @@ SECRET_KEY = 'bflsloza#^_)@$)k$sssk$b1nxf&*8m%cqglr5qs#@pk%673#u'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'ec2-54-180-79-207.ap-northeast-2.compute.amazonaws.com'
+    '127.0.0.1',
+    'ec2-54-180-79-207.ap-northeast-2.compute.amazonaws.com',
 ]
 
 
@@ -80,8 +82,14 @@ WSGI_APPLICATION = 'intern.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'intern',
+        'USER': 'admin',
+        'PASSWORD': 'admin1234',
+        'HOST': '211.252.87.118',
+        'PORT': '11000',
     }
 }
 
@@ -123,3 +131,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
